@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<br><br><br>
+<div class="jumbotron text-center">
+    <h3>Bloguma Xoş Gəlmisiniz!</h3>
+    <h5>Siz də öz məqalənizi burada paylaşa bilərsiniz...</h5>
+</div>
+<br><br>
+<p>
+    {% if request.user.is_authenticated %}
+            Giriş Edildi,{{request.user.username}}
+    {% else %}
+            Giriş Edilmədi
+    {% endif %}
+
+</p>
+
+{% endblock %}

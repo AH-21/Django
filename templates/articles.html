@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 offset-md-3" style="text-align:center">
+        <h1>***Məqalələr***</h1>
+<hr>
+    </div>
+</div>
+
+{% if articles %}
+{% for article in articles %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <!-- Post content-->
+        <article>
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <a href="{% url 'article:detail' article.id %}"><h1 class="fw-bolder mb-1">{{article.title}}</h1></a>
+                <hr>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">{{article.created_date}}</div>
+                <br>
+                <!-- Author-->
+                <p class="lead">
+                    {{article.author.username}} tərəfindən yazıldı
+                </p>
+            </header>
+            <!-- Preview image figure-->
+            {% if article.article_image %}
+            <figure class="mb-4"><img class="img-fluid rounded" src="{{article.article_image.url}}"></figure>
+            {% endif %}
+            <!-- Post content-->
+            <section class="mb-5">
+                <p class="fs-5 mb-4">{{article.content|safe|truncatewords:30}}</p>
+                <a href="{% url 'article:detail' article.id %}" class="btn btn-success">Davamini Oxu</a>
+            </section>
+        </article>
+</div>
+</div>
+{% endfor %}
+
+{% else %}
+    <div class = "alert alert-info">
+
+        Məqalə tapılmadı...
+
+    </div>
+{% endif %}
+
+{% endblock %}

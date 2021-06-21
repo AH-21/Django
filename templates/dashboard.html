@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1 style="text-align:center">***Kontrol Paneli***</h1>
+<hr>
+<p>
+    <h4 style="text-align:center">Xoş gəlmisiniz,  <small>{{request.user.username}}</small></h4>
+</p>
+<hr>
+<a class="btn btn-success" href="{% url 'article:dashboard' %}">Məqalə Eləvə Et</a>
+<br><br><br>
+
+{% if articles  %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Başlıq</th>
+        <th scope="col">Müəllif</th>
+        <th scope="col">Tarix</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+        <tr>
+            <th scope="row">{{article.id}}</th>
+            <td><a href="{% url 'article:detail' article.id %}">{{article.title}}</a></td>
+            <td>{{article.author.username}}</td>
+            <td>{{article.created_date}}</td>
+            <td><a href="{% url 'article:update' article.id %}" class="btn btn-warning"></a>Yeniləmə</td>
+            <td><a href="{% url 'article:delete' article.id %}" class="btn btn-danger"></a>Silmə</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+    <div class="alert alert-info">
+        Sizə aid məqalə tapılmadı...
+    </div>
+{% endif %}
+
+
+{% endblock %}
