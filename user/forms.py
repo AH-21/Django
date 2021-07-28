@@ -1,8 +1,5 @@
 from django import forms
 
-
-
-
 class  LoginForm(forms.Form):
     username = forms.CharField(label = "İstifadəçi adı")
     password = forms.CharField(label = "Parol",widget = forms.PasswordInput)

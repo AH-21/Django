@@ -19,4 +19,3 @@ class ArticleAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Article
-        
